@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llenado automático de detergente y suavizante</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0e0e0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container {
+            flex: 1;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            text-transform: uppercase;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        select, input[type="number"], input[type="submit"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .mensaje {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .imagen-container {
+            flex: 1;
+            text-align: center;
+        }
+        .imagen {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Llenado automático de detergente y suavizante</h1>
+            <form id="formulario">
+                <label for="tamaño">Seleccione el tamaño de la carga:</label>
+                <select name="tamaño" id="tamaño">
+                    <option value="chico">Carga chica</option>
+                    <option value="mediano">Carga mediana</option>
+                    <option value="grande">Carga grande</option>
+                </select>
+                <label for="detergente">Nivel de detergente (ml):</label>
+                <input type="number" id="detergente" name="detergente" placeholder="Ingrese nivel de detergente">
+                <label for="suavizante">Nivel de suavizante (ml):</label>
+                <input type="number" id="suavizante" name="suavizante" placeholder="Ingrese nivel de suavizante">
+                <input type="submit" value="Enviar">
+            </form>
+            <div id="mensaje" class="mensaje"></div>
+        </div>
+        <div class="imagen-container">
+            <img src="https://i.pinimg.com/564x/87/f8/b5/87f8b51e7b8f14eaf358af2370c41e19.jpg" alt="Lavadora" class="imagen">
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formulario').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var tamaño = document.getElementById('tamaño').value;
+            var detergente = document.getElementById('detergente').value;
+            var suavizante = document.getElementById('suavizante').value;
+            enviarDatos(tamaño, detergente, suavizante);
+        });
+
+        function enviarDatos(tamaño, detergente, suavizante) {
+            // Aquí puedes enviar los datos al ESP32 usando Fetch API o AJAX
+            // Por simplicidad, en este ejemplo solo mostraremos un mensaje en la página
+            var mensaje = "Se ha seleccionado " + tamaño + " y se ha ingresado " + detergente + " ml de detergente y " + suavizante + " ml de suavizante.";
+            document.getElementById('mensaje').innerText = mensaje;
+        }
+    </script>
+</body>
+</html>
